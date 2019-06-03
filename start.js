@@ -28,9 +28,12 @@ const init = async () => {
         method: 'GET',
         path: '/',
         handler: async (request, h) => {
-          const {delay, url} = request.query;
+          const {delay, url, failure} = request.query;
           if (delay) {
             await timeout(delay * 1000);
+          }
+          if (Math.random() < failure) {
+            return {"ok": false};
           }
           if (url) {
             return await awaitFetch(url);
