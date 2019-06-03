@@ -33,7 +33,7 @@ const init = async () => {
             await timeout(delay * 1000);
           }
           if (Math.random() < failure) {
-            return {"ok": false};
+            throw new Error();
           }
           if (url) {
             return await awaitFetch(url);
